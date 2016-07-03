@@ -1,0 +1,304 @@
+* same things
+** sampleLibary role search
+  RoleControl Usecontrol  
+  Authority   Actor
+  Authorization
+
+  sampleLibary 里有 actorsId
+  知道每个当前负责人的 useid  -->查出 Roleid  
+  如果是设计师的 roleid  在这个 list 中  
+  就查出这个 sampleLibary
+
+  参数返回： 前台 roleid -->  List<roleid ,actor >
+
+  方法：通过 roleID 查询这个角色中的所有用户
+   |
+   |
+   获得一个 useDTO 的 list
+
+   一组 ActorsID   同一条件多个值查询
+   
+** Authorization.java and SecurityAccessFacadeImpl.java  code
+  WHAT MEAN?
+    #+BEGIN_SRC java
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "ACTOR_ID")
+    private Actor actor;
+
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "AUTHORITY_ID")
+    private Authority authority;
+ 
+    
+
+/**
+	 * 通过 RoleID 查询角色下所有用户
+	 */
+	@Override
+	public List<UserDTO> listQueryGrantUserByRoleId(Long roleId) {
+		
+		StringBuilder jpql = new StringBuilder("SELECT NEW org.openkoala.security.facade.dto.UserDTO(_actor.id)");
+		jpql.append(" FROM Authorization _authorization JOIN _authorization.actor _actor JOIN _authorization.authority _authority");
+		jpql.append(" WHERE TYPE(_actor) = :_actorType");
+		jpql.append(" AND _authority.id = :roleId");
+		
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("_actorType", User.class);
+		parameters.put("roleId", roleId);
+
+		return getQueryChannelService()
+				.createJpqlQuery(jpql.toString())
+				.setParameters(parameters)
+				.list();
+	}
+    #+END_SRC
+** BY RoleID search user 
+#+BEGIN_SRC java
+@Override
+	public List<UserDTO> listQueryGrantUserByRoleId(Long roleId) {
+		
+		StringBuilder jpql = new StringBuilder("SELECT NEW org.openkoala.security.facade.dto.UserDTO(_actor.id)");
+		jpql.append(" FROM Authorization _authorization JOIN _authorization.actor _actor JOIN _authorization.authority _authority");
+		jpql.append(" WHERE TYPE(_actor) = :_actorType");
+		jpql.append(" AND _authority.id = :roleId");
+		
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("_actorType", User.class);
+		parameters.put("roleId", roleId);
+
+		return getQueryChannelService()
+				.createJpqlQuery(jpql.toString())
+				.setParameters(parameters)
+				.list();
+	}
+
+  /*
+  * 查询角色中包含的 UserDTO
+  */
+  List<UserDTO> userDTOs = securityAccessFacade.listQueryGrantUserByRoleId(queryVo.getRole());
+
+  for (UserDTO userDTO : userDTOs) {
+	if (userDTO.getId()!=null) {
+	  queryVo.setActorsId(userDTO.getId());
+	  jpql.append(" and _SampleLibrary.actorsId=?");
+	  conditionVals.add(queryVo.getActorsId());
+			}
+		}
+        
+
+ /*
+         * 查询角色中包含的 UserDTO
+         */
+        List<UserDTO> userDTOs = securityAccessFacade.listQueryGrantUserByRoleId(queryVo.getRole());
+        Long[] ids = new Long[userDTOs.size()]; 
+        for (int i = 0; i < userDTOs.size(); i++) {
+			ids[i] = userDTOs.get(i).getId();
+		}
+
+
+ if (ids.length>0) {
+        	jpql.append(" and _SampleLibrary.actorsId in ( ");
+    for (int i = 0; i < ids.length; i++) {
+				if (i==ids.length-1) {
+					jpql.append(ids[i]+")");
+				}else{
+					jpql.append(ids[i]+",");
+				}
+			}
+		}
+
+数据查询语句
+select _SampleLibrary from SampleLibrary _SampleLibrary   where 1=1  and _SampleLibrary.companyId=? and _SampleLibrary.flag=? and _SampleLibrary.actorsId in ( 9,6,14,2,15,16,21,22,10,24,26,28,13,27,51,4,20,54,55,12,1)
+#+END_SRC 
+** CustomerNote change sampleLibary 
+actor 为 彭晓玉
+*** double to  string
+由于 double 是基本类型，所以没有 toString 方法。
+可以使用 String.valueOf(double)方法，也可以用最笨的方法，就是直接+；
+如：String str = ""+double;用空字符串加上数字就好了
+*** String to Integer 
+ Integer.parseInt(string)
+#+BEGIN_SRC js
+ 'changeToSamplelibary': function(event, data){
+	                    	//console.log(data);
+	                        var indexs = data.data;
+	                        var $this = $(this);
+	                        if(indexs.length == 0){
+	                            $this.message({
+	                            	 type: 'warning',
+	                                   content: '请选择要转的留言'
+	                            })
+	                            return;
+	                        }
+	                        if(indexs.length > 1){
+	                            $this.message({
+	                            	type: 'warning',
+		                            content: '只能选择一条留言',
+	                            })
+	                            return;
+	                        }
+	                        var change = function(){
+	                            self.changeToSamplelibary(data.item[0], $this);
+	                        };
+	                        $this.confirm({
+	                            content: '确定要转换所选留言吗?',
+	                            callBack: change
+	                        });
+	                    },
+
+
+  changeToSamplelibary: function(json, grid){
+	    	$.post('${pageContext.request.contextPath}/CustomerNote/changeToSamplelibary.koala', json).done(function(result){
+	                        if(result.success){
+	                            grid.data('koala.grid').refresh();
+	                            grid.message({
+	                                type: 'success',
+	                                content: '转换成功'
+	                            });
+	                        }else{
+	                            grid.message({
+	                                type: 'error',
+	                                content: result.result
+	                            });
+	                        }
+	    	});
+	    }, 
+	    
+
+#+END_SRC
+** inventory manager
+  添加标志：1 0  直接入库
+
+  添加   修改  入库
+  申请采购  修改  申请入库  直接入库  入库审核
+
+直接入库：
+1.同一产品 不增加记录 只增加数据
+2.直接审核
+
+添加 applyType 字段
+
+applyType 全部设置为 0 申请入库
+** project warning switch
+
+project 添加 switch_warn column
+
+{'id': id,'switchWarn':1,} 
+如何动态获取 参数?
+#+BEGIN_SRC java
+  'switchWarn': function(event, data){
+	                        var indexs = data.data;
+	                        var $this = $(this);
+	                        if(indexs.length == 0){
+	                            $this.message({
+	                                type: 'warning',
+	                                content: '请选择一个项目进行操作'
+	                            })
+	                            return;
+	                        }
+	                        if(indexs.length > 1){
+	                            $this.message({
+	                                type: 'warning',
+	                                content: '只能选择一个项目进行操作'
+	                            })
+	                            return;
+	                        }
+	                        var switchWarn = function(){
+	                            self.switchWarn(indexs[0], data.item[0]);
+	                        };
+	                        $this.confirm({
+	                            content: '确定要操作此项目预警吗?',
+	                            callBack: switchWarn
+	                        });
+                            
+	                    },
+
+
+传两个参数到下面使用  (indexs[0], data.item[0])
+
+
+ switchWarn: function(id,item){
+	    
+	    	var switchWarn = item.switchWarn
+	    	console.log(switchWarn);
+	    	//console.log(switchW);	
+	    	//var switchWarn = switchWarn==0?1:0;
+	    	console.log(switchWarn);
+	    	$.post('${pageContext.request.contextPath}/Project/switchWarn.koala',
+	    			{'id': id,'switchWarn':switchWarn} 
+	    	).done(function(result){
+	                        if(result.success){
+	                            grid.data('koala.grid').refresh();
+	                            grid.message({
+	                                type: 'success',
+	                                content: '预警开启/关闭成功'
+	                            });
+	                        }else{
+	                            grid.message({
+	                                type: 'error',
+	                                content: result.result
+	                            });
+	                        }
+	    	});
+	    },
+
+#+END_SRC
+
+1. 搭建开发环境
+2. 通过角色查询角色组所以用户的样本库
+3. 留言转样本库
+4. 添加直接入库 和直接审核
+5. 项目预警开关
+* JAVA learn
+** 32 
+*** HIBERNATE
+**** CURD
+JAR 包管理
+JTA:JAVA TRANSATION API 事务管理
+分布式事务处理
+根据持久化类生成表
+1. HIBERNATE.CFG.XML
+   配置文件
+   - SESSION-FACTORY
+   - DIALECT
+   - HBM2DDL.AUTO
+     类-->表
+     VALIDATE 验证 UPDATE 检查更新
+2. *.HBM.XML
+   映射文件
+   - HIBERNATE-MAPPING
+   - CLASS
+     <CLASS 类 TABLE>
+     <ID 属性 COLUMN>
+     <GENERATOR>
+     </ID>
+     PROPERTY
+     </CLASS>
+3. 将 HBM.XML 导入到 HIBERNATE.CFG.XML 中
+   <MAPPING RESOURCE="">
+**** SESSIONFACTORY
+1.HIBERNATE 中的配置文件,映射文件,持久化类的信息都在 SESSIONFACTORY 中
+2.sessionFactory 存放的都是共享的信息,线程安全的
+3.一个 Hibernate 框架只能有一个 sessionFactory
+4.sessionFactory 是一个重量级的类
+session 
+1.在 Hibernate 中 对数据库的 crud 操作都是 session 完成的
+2.
+**** ID generator
+1.uuid      string 串
+2.increment max+1
+3.identity  自动增长
+4.assigned  手动添加
+5.sequence
+**** Object status 
+1. 临时状态   ValueObject
+2. 持久化状态  PO
+3. 游离状态
+**** session
+session 相对于一个连接 crud 都在 session 中执行
+sessionFactory.opensession()
+sessionFactory.getCurrentSession()
+** 42 SVN 
+*** SVN
+**** 创建仓库
+svnadmin create E:\manue1\workspace\SVN\manue1_01

@@ -1,0 +1,77 @@
+* Reading List
+
+** DONE [#B] 读点什么书好呢？ 
+CLOSED: [2016-05-23 周一 10:07] SCHEDULED: <2016-05-22 周日 10:30>
+看看英文文档吧!
+
+** TODO [#B] Reading English Book one hour every day 
+SCHEDULED: <2016-05-23 周一++1d>
+
+* Emacs
+
+** DONE [#B] emacs 内置输入法
+CLOSED: [2016-05-23 周一 12:42] DEADLINE: <2016-05-23 周一 23:00>
+字典
+有道翻译
+
+** DONE [#B] org-pomodoro 配置 
+CLOSED: [2016-05-23 周一 14:06] DEADLINE: <2016-05-23 周一 23:00>
+:LOGBOOK:
+CLOCK: [2016-05-23 周一 12:45]--[2016-05-23 周一 13:10] =>  0:25
+CLOCK: [2016-05-22 周日 15:05]
+:END:
+配置成和事件绑定
+
+** DONE [#B] 笔记中截图 
+CLOSED: [2016-07-01 周五 01:44] DEADLINE: <2016-05-23 周一 23:00>
+:LOGBOOK:
+CLOCK: [2016-05-23 周一 13:39]--[2016-05-23 周一 14:04] =>  0:25
+:END:
+如何显示图片 
+
+** [#B] config emacs 
+DEADLINE: <2016-07-02 周六>
+ 
+ 1. 修改 gtd 管理配置 使其能够有个好的文件管理目录
+    - week workqueue
+      + java
+      + doc
+      + code
+ 2. github 创建对应仓库
+ 3. deft 目录存放位置修改
+ 
+** chinese layer use
+read readme.org 
+http://www.newsmth.net/nForum/#!article/Emacs/108564 download direct
+open youdao directory  自动补充英文  
+** org-pomodoro config 
+read readme.org
+** code  highlight
+
+* Programming
+
+** TODO [#B] JAVA learn & make plan 
+DEADLINE: <2016-05-23 周一 23:00>
+构思清楚每天坚持
+
+** TODO [#B] 环境搭建 导入产品 
+
+** TODO [#B] sampleLibary search by role 
+
+** DONE [#B] 留言转 样本库 
+CLOSED: [2016-06-01 周三 16:56] DEADLINE: <2016-06-01 周三 18:00>
+
+** DONE [#B] inventory  入库 
+CLOSED: [2016-07-01 周五 01:44] DEADLINE: <2016-06-02 周四 18:00>
+
+* Body Building
+
+** TODO [#B] Sit-ups 50 every day  
+SCHEDULED: <2016-05-23 周一++1d>
+
+* Find Jobs
+
+** TODO [#B] Poi excel 函数计算功能 
+
+** TODO [#B] 1 
+

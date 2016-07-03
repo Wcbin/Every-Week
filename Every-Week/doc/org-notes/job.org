@@ -1,0 +1,136 @@
+
+* 2016
+** 2016-07 七月
+*** 17
+**** 账目财务核对结束 不允许录入收支数据
+1.测试项目结算问题 修改 bug
+2.上传前端修改 测试 
+3.网盘存储
+project-cost.jsp   projectControl
+**** 订单直接生成项目
+projectControler
+**** 日常收支管理添加申请理由查询 
+**** 入库记录添加
+**** 加盟项目管理 款项详情
+  修改  提交审核
+ 修改的时候需要删除原来生成的四条记录
+ 提交审核需要 在申请信息审核后  才能提交审核
+ // DTO 格式获取参数 查询结果后 Asscer 处理数据 返回给前端  facade 处理后端的事物
+JPA 是什么东西?   private Project project
+hibernate 如何处理数据  关联表查询 project.id
+
+// 0 表示未审核，1 表示审核通过,2 表示审核不通过 ,3
+							// 已经打款,4 表示未核对，5 表示核对通过，6 表示核对不通过
+
+940103
+**** 客户留言转样本库后修改状态 已转样本库 
+面积没有的设置为 0
+*** 20
+**** 样本库添加地址搜索 
+**** 测试服务器分配加盟权限
+*** 23 
+**** DONE 加盟商金融申请后 邮件提醒静静 
+CLOSED: [2016-06-23 周四 14:41]
+
+**** DONE 加盟商款项提交审核后 邮件提醒静静
+CLOSED: [2016-06-24 周五 11:58]
+*** 28 
+
+**** DONE 样本库分配给加盟商订单后短信提醒加盟商负责人
+CLOSED: [2016-06-28 周二 17:57]
+1. 分析机构负责人?
+   EmployeePostHolding.java 
+   public static List<Employee> getManagerOfOrganization(Organization organization, Date date) {
+	   	return getRepository().createNamedQuery("getManagerOfOrganization").addParameter("organization", organization).addParameter("principal", true).addParameter("date", date).list();
+	  }
+2. 
+**** DONE 公司内 ERP 培训
+CLOSED: [2016-06-28 周二 17:57]
+**** TODO 市场部需求 
+1. 公司的名字
+2. 设计师提醒 回访  短信提醒
+3. 设计师组长角色
+*** 29
+**** 帮培培拿创业指导书
+**** 工长尾款计算
+非出租房项目计算方法：
+施工总款　＝　项目面积×２６５－辅料费用－油漆费用（销售价）＋增项款－减项款
+应付款　＝　施工总款×９５％，　扣除５％风险质保金
+*** 30
+**** 日常收支导出 excel
+1. 导出 excel 合并单元格
+2. 查看统计接口,查询操作 原有导出 excel 代码
+
+**** svn user
+ svn://182.92.240.161
+lixuchun   password : lxc88
+**** ecliplse worksapce conf
+svn 安装      http://jingyan.baidu.com/article/f71d60376b4c571ab741d174.html
+
+
+maven     http://m2eclipse.sonatype.org/sites/m2e/    插件安装
+
+http://maven.apache.org/download.cgi    maven 安装
+
+仓库位置调整
+conf   settting.xml    E:\manue1\repository
+
+
+jetty  安装   http://my.oschina.net/u/1169607/blog/368595
+
+**** test server
+182.92.240.161
+user:wangchengbin passwd:qweqwe
+i
+**** maven project 
+svn  检出 -->导出-->maven project
+maven install--> maven build   jetty:run  / add  all  source
+generatorCOnfig.xml  config mysql.jar  class path
+--> maven build 
+mybatis generator 插件安装
+http://jingyan.baidu.com/article/9faa7231506ed8473c28cbee.html
+
+**** mysql conf
+**** start mysql
+ 4.安装 MYSQL
+
+开始->搜索框里->输入 cmd，会看到 cmd.exe 不要着急按回车右击鼠标 "以管理员的身份运行"。
+
+5.在命令行里输入
+
+键入 mysqld -install ,将 mysql 添加到 windows 的服务中.
+执行成功会提示 Service successfully installed.
+再键入 net start mysql 启动 mysql 服务.
+
+6.现在我们可以去连接数据库进行测试了。
+
+7，如果第一次 net start mysql 没有成功，我们需要重新 mysqld -install，在安装之前我们还要清除 mysql 服务。
+
+开始->运行->输入 cmd->sc delete mysql  (管理员权限)
+
+**** WINDOWS 下 UTF8 设置
+  create database elvdou  DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci; 
+   项目中大小写不敏感  linux 下 需要修改
+
+**** 修改密码:
+>mysql -u root -p
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD('manue1');
+FLUSH PRIVILEGES;
+  
+**** jre  change jdk 
+edit jre    add VM  to  jdk
+**** ecliplse key top10
+http://www.cnblogs.com/iamfy/archive/2012/07/11/2586869.html
+
+**** auto-activation
+Window -> Perferences -> Java -> Editor -> Content Assist，
+在右边最下面一栏找到 auto-Activation，下面有三个选项，
+找到第二个“Auto activation triggers for Java
+**** insert key  
+光标黑块 导致没法输入   insert 键 
+**** aptana js 
+  search apatana  eclipse 支持 javascript HTML css 开发
+*** 2016-07-03 星期日
+**** Poi excel 
+Entered on [2016-07-03 周日 15:36]
+ 修改 excel 导出中的小问题

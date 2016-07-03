@@ -1,0 +1,138 @@
+
+* spacemacs shortcuts
+f1 打开 gdt.org
+f9 添加任务 TODO  
+f8 新建 deft
+** config Manage key
+SPC f e d  快速打开.spacemacs
+SPC f e R  同步配置文件
+** file Manage key
+SPC f f   打开文件夹搜索 C-h 
+SPC f r   open recent file
+SPC f R   rename file 
+SPC f c   copy file current file
+SPC f j   open dired  
+SPC p f   在当前文件夹下搜索文件名
+SPC f t  打开/关闭侧边栏
+** Org-mode GTD key 
+alt+回车
+alt+left/right  切换上下层
+C-c C-s   添加开始时间
+C-c C-d   添加结束时间
+C-c .     添加时间段
+C-a       GTD 管理列表
+C-c C-t   TODO-DONE
+++1d      every day       
+** windows Manage key
+SPC w s  水平分割
+SPC w v  垂直分割
+SPC n    跳转
+SPC w c  关闭当前窗口
+SPC 0    跳到侧边栏
+SPC '    打开/关闭 Shell   C-k C-j  前一条/后一条
+* * Buffer related operations 
+SPC b b    search buffer
+SPC b k    关闭 buffer
+SPC b n/p  previous/next 
+SPC p b    当前相关 buffer
+** Layout replated operations
+SPC l o    custom layout
+SPC l L/s  load/save layout
+SPC l l    switch layout
+SPC l TAB  quick way to layout
+SPC l ?    open up the help 
+** Dired mode 
+SPC f j       open file
+D/C/R         删除/Copy/rename
+m             标记文件
++             新建目录
+** Deft 
+F8           deft
+,   d        delete
+,   n        new
+C-c RET      rename new 
+C-c C-l/c    open/clear filter
+
+** Git 
+SPC g i 
+SPC g s      
+s             
+c
+* VIM shortcuts
+vim 搜索替换功能
+* ecliplse key 
+  
+  ctrl  +  shift  +  g：查看引用  
+  ctrl  +  shift  +  o：导入类  
+  ctrl  +  shift  +  f：格式化代码  
+  ctrl  +  shift  +  t  查找 java 类
+  Ctrl  +  Shift  +  R    查找文件
+  Ctrl  +  K
+  Ctrl  +  Shift  +  K  查找页面内
+  
+注释掉代码：
+把要注释的代码选中，按 Ctrl+Shift+/    /*  */  形式的
+ctrl+/    //形式的
+
+取消代码注释：
+把要注释的代码选中，按 Ctrl+Shift+\   /*  */  形式的
+ctrl+/   //形式的
+
+Ctrl+Shift+T        Class 查询
+
+Ctrl+Shift+R         各种文件
+
+Ctrl+Shift+G          那个文件调用了这个方法
+
+F3                    打开 
+
+Ctrl + o           当前类中的方法 
+
+Ctrl +  e          快速在打开的选项卡之间切换
+
+Ctrl +  k  /  Ctrl + shift + k  搜索关键词
+
+Ctrl+Shift+B  加断点
+ 运行到断点后：
+使用快捷键 F5,F6，F7 单步执行。
+F5：Step into/进入该行的函数内部
+F6：Step over/一行一行执行
+F7：Step return/退出当前的函数
+
+ctrl+shift+x   转为大写     ctrl+shift+y   转为小写
+* sublime text3 
+Ctrl+L 选择整行（按住-继续选择下行）
+Ctrl+KK 从光标处删除至行尾
+Ctrl+Shift+K 删除整行
+Ctrl+Shift+D 复制光标所在整行，插入在该行之前
+Ctrl+J 合并行（已选择需要合并的多行时）
+Ctrl+KU 改为大写
+Ctrl+KL 改为小写
+Ctrl+D 选词 （按住-继续选择下个相同的字符串）
+Ctrl+M 光标移动至括号内开始或结束的位置
+Ctrl+Shift+M 选择括号内的内容（按住-继续选择父括号）
+Ctrl+/ 注释整行（如已选择内容，同“Ctrl+Shift+/”效果）
+Ctrl+Shift+/ 注释已选择内容
+Ctrl+Z 撤销
+Ctrl+Y 恢复撤销
+Ctrl+M 光标跳至对应的括号
+Alt+. 闭合当前标签
+Ctrl+Shift+A 选择光标位置父标签对儿
+Ctrl+Shift+[ 折叠代码
+Ctrl+Shift+] 展开代码
+Ctrl+KT 折叠属性
+Ctrl+K0 展开所有
+Ctrl+U 软撤销
+Ctrl+T 词互换
+Tab 缩进 自动完成
+Shift+Tab 去除缩进
+Ctrl+Shift+↑ 与上行互换
+Ctrl+Shift+↓ 与下行互换
+Ctrl+K Backspace 从光标处删除至行首
+Ctrl+Enter 光标后插入行
+Ctrl+Shift+Enter 光标前插入行
+Ctrl+F2 设置书签
+F2 下一个书签
+Shift+F2 上一个书签
+* win10 shortcuts
+ win+ctrl+left/right 切换工作区
