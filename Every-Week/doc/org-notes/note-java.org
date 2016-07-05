@@ -19,7 +19,7 @@
    一组 ActorsID   同一条件多个值查询
    
 ** Authorization.java and SecurityAccessFacadeImpl.java  code
-  WHAT MEAN?
+WHAT MEAN?
     #+BEGIN_SRC java
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "ACTOR_ID")

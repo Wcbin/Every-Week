@@ -30,7 +30,7 @@ SPC n    跳转
 SPC w c  关闭当前窗口
 SPC 0    跳到侧边栏
 SPC '    打开/关闭 Shell   C-k C-j  前一条/后一条
-* * Buffer related operations 
+* Buffer related operations 
 SPC b b    search buffer
 SPC b k    关闭 buffer
 SPC b n/p  previous/next 

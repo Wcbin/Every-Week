@@ -8,7 +8,7 @@
    在文件中添加要挂载的分区和文件目录
    /etc/fstab
    /dev/sda5/    media/win    ntfs    defaults   02
-   然后mount -a
+   然后 mount -a
 ** pinyin input
 *** install
   1. install chinese language pack
@@ -143,7 +143,7 @@ nil 0 nil "_NET_WM_STATE" 32
   6. sudo apt-get install oneko
    hello-kity run with your mouse
 ** ubuntu install gdebi
-  sudo apt-get install gdebi
+sudo apt-get install gdebi
 ** ubuntu install theme
   theme:http://kde-look.org/index.php?xcontentmode=167&PHPSESSID=6
    cp to /usr/share/theme
@@ -172,7 +172,7 @@ nil 0 nil "_NET_WM_STATE" 32
        + source .bashrc
          java -version
       4. change jdk version
-         javac -version 要与java -version 一致
+         javac -version 要与 java -version 一致
          
 *** install apache-tomcat
     * step1 download tomcat tar to ~/opt
@@ -327,14 +327,14 @@ CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib; export CLASSPATH
       export DISPLAY=:0
       cd /tmp/database
       ./runInstaller
-      + 安装到68%时的错 
-        ins_ctx.mk的错误提示，直接contiue跳过去 
+      + 安装到 68%时的错 
+        ins_ctx.mk 的错误提示，直接 contiue 跳过去 
         后面还回报错： 
         make file '/......emagent.mk'出错 
         解决方法： 
         另开一个终端，键入命令行： 
         sed -i 's/^\(\s*\$(MK_EMAGENT_NMECTL)\)\s*$/\1 -lnnz11/g' $ORACLE_HOME/sysman/lib/ins_emagent.mk 
-        点击安装界面的retry,就可以继续了 
+        点击安装界面的 retry,就可以继续了 
         类似的后面还会提示四次，以下面的命令行如法炮制 
         sed -i 's/^\(\$LD \$LD_RUNTIME\) \(\$LD_OPT\)/\1 -Wl,--no-as-needed \2/g' $ORACLE_HOME/bin/genorasdksh 
         sed -i 's/^\(\s*\)\(\$(OCRLIBS_DEFAULT)\)/\1 -Wl,--no-as-needed \2/g' $ORACLE_HOME/srvm/lib/ins_srvm.mk 
@@ -342,49 +342,49 @@ CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib; export CLASSPATH
           $ORACLE_HOME/network/lib/env_network.mk 
         sed -i 's/^\(ORACLE_LINKLINE.*\$(ORACLE_LINKER)\) \(\$(PL_FLAGS)\)/\1 -Wl,--no-as-needed \2/g' $ORACLE_HOME/rdbms/lib/env_rdbms.mk 
 
-     安装完成会提示有两个sh文件需要运行： 
+     安装完成会提示有两个 sh 文件需要运行： 
      打开另开一个终端： 
      sudo /home/xxx/app/xxx/oracle/oraInventory/orainstRoot.sh 
      sudo /home/xxx/app/xxx/oracle/Oracle11gee/product/11.2.0/dbhome_1/root.sh 
      安装完成！
       
-   + 启动oracle
-    1. 启动oralce的监听进程：
+   + 启动 oracle
+    1. 启动 oralce 的监听进程：
        $lsnrctl start
-    2. 进入独占的系统用户下，启动oralce数据库：
+    2. 进入独占的系统用户下，启动 oralce 数据库：
        $sqlplus /nolog
        SQL>connect / as sysdba
        SQL>startup;
 
 
 *** error
-   *  重新安装时You do not have sufficient permissions to access the inventory
+   *  重新安装时 You do not have sufficient permissions to access the inventory
       http://www.linuxdiyf.com/viewarticle.php?id=57730
-      删除/etc/oraInst.loc和oratab这两个文件
+      删除/etc/oraInst.loc 和 oratab 这两个文件
    *  ORA-01034: ORACLE not available ORA-27101: shared memory realm does not exist Linux-x86_64 Error: 2:
-      1 、先看oracle的监听和oracle的服务是否都启动了。启动oracle监听：
-          输入lsnrctl start，回车即启动监听。
-      2 、查看oracle的sid叫什么
-      3 、再输入sqlplus  /nolog
+      1、先看 oracle 的监听和 oracle 的服务是否都启动了。启动 oracle 监听：
+          输入 lsnrctl start，回车即启动监听。
+      2、查看 oracle 的 sid 叫什么
+      3、再输入 sqlplus  /nolog
           再输入 conn / as sysdba;
-      4、再输入startup，回车.这步是启动oracle服务。
-         如果startup启动被告知已经启动了，可以先输入shutdown immediate；等shutdown结束之后，再输入startup。
-      5 、过几秒钟等命令运行完成，就能连接了。这个时候，可以输入"select * from user_tables;"测试一下，看是否有查询结果。
-      6 、出现ORA-01034和ORA-27101的原因是多方面的：主要是oracle当前的服务不可用，shared memory realm does not exist，
-         是因为oracle没有启动或没有正常启动，共享内存并没有分配给当前实例.所以，通过设置实例名，再用操作系统身份验证的方式，
-        启动数据库。这样数据库就正常启动了，就不会报ORA-01034和ORA-27101两个启动异常了。
+      4、再输入 startup，回车.这步是启动 oracle 服务。
+         如果 startup 启动被告知已经启动了，可以先输入 shutdown immediate；等 shutdown 结束之后，再输入 startup。
+      5、过几秒钟等命令运行完成，就能连接了。这个时候，可以输入"select * from user_tables;"测试一下，看是否有查询结果。
+      6、出现 ORA-01034 和 ORA-27101 的原因是多方面的：主要是 oracle 当前的服务不可用，shared memory realm does not exist，
+         是因为 oracle 没有启动或没有正常启动，共享内存并没有分配给当前实例.所以，通过设置实例名，再用操作系统身份验证的方式，
+        启动数据库。这样数据库就正常启动了，就不会报 ORA-01034 和 ORA-27101 两个启动异常了。
    *  oracle 插入中文乱码问题
-      因为你的环境默认下NLS_LANG环境变量是english的，只要在/etc/profile文件中加入export NLS_LANG="SIMPLIFIED CHINESE_CHINA.UTF8"
+      因为你的环境默认下 NLS_LANG 环境变量是 english 的，只要在/etc/profile 文件中加入 export NLS_LANG="SIMPLIFIED CHINESE_CHINA.UTF8"
       然而没效果
-       refer： http://zhidao.baidu.com/link?url=45zj7JNCFNveMsKFZztQcQxHPPP52j4W5AWA8r6dNPpGP64V7TCu9L4-MC64X9tSBwGFi3ljwKKXUk0BwoVbla
+       refer：http://zhidao.baidu.com/link?url=45zj7JNCFNveMsKFZztQcQxHPPP52j4W5AWA8r6dNPpGP64V7TCu9L4-MC64X9tSBwGFi3ljwKKXUk0BwoVbla
       + 1.数据库全备
       + 2.查询当前字符集
         SQL> select * from nls_database_parameters where parameter='NLS_CHARACTERSET';
       + 3.关闭数据库
         SQL> shutdown immediate
-      + 4.启动数据库到mount状态
+      + 4.启动数据库到 mount 状态
         SQL> startup mount
-      + 5.限制session
+      + 5.限制 session
         SQL> alter system enable restricted session;
       + 6.查询相关参数并修改
         SQL> show parameter job_queue_processes; 
@@ -394,9 +394,9 @@ CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib; export CLASSPATH
         SQL> alter database open;
       + 8.修改字符集
         SQL> alter database character set ZHS16GBK;
-        ORA-12712: new character set must be a superset of old character set出现错误提示，
-        新字符集必须是老字符集的超集，也就原来字符集是新字符集的子集，可以再Oracle官方文档上查询字符集包含关系。
-        下面使用Oracle内部命令internal_use，跳过超集检查，生产环境不建议使用此方法。
+        ORA-12712: new character set must be a superset of old character set 出现错误提示，
+        新字符集必须是老字符集的超集，也就原来字符集是新字符集的子集，可以再 Oracle 官方文档上查询字符集包含关系。
+        下面使用 Oracle 内部命令 internal_use，跳过超集检查，生产环境不建议使用此方法。
         SQL> alter database character set internal_use ZHS16GBK; 
         Database altered.
       + 9.查询当前字符集
@@ -406,7 +406,7 @@ CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib; export CLASSPATH
         NLS_CHARACTERSET ZHS16GBK
       + 10.关闭数据库
         SQL> shutdown immediate
-      + 11.启动数据库到mount状态
+      + 11.启动数据库到 mount 状态
         SQL> startup mount
       + 12.将相关参数改回原来值
         SQL> alter system set job_queue_processes=10;
@@ -445,31 +445,31 @@ CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib; export CLASSPATH
    * install
      sudo ln -s ~/opt/myBase7/myBase /usr/local/bin/mybase
 ** install mysql
-   * 1.检查系统中是否已经安装了mysql
+   * 1.检查系统中是否已经安装了 mysql
      sudo netstat -tap | grep mysql
      没有反应 说明没有安装
-   * 2.安装mysql
+   * 2.安装 mysql
      sudo apt-get install mysql-server mysql-client
    * 3.测试安装
      sudo netstat -tap | grep mysql
      mysql -u root -p 
-   * 4.mysql简单管理
-     启动MySQL服务：                       sudo service mysql start
-     停止MySQL服务：                       sudo stop mysql
+   * 4.mysql 简单管理
+     启动 MySQL 服务：                       sudo service mysql start
+     停止 MySQL 服务：                       sudo stop mysql
      修改 MySQL 的管理员密码：     sudo mysqladmin -u root password newpassword
-     设置远程访问(正常情况下，mysql占用的3306端口只是在IP127.0.0.1上监听，
-     拒绝了其他IP的访问（通过netstat可以查看到）。取消本地监  听需要修改 
+     设置远程访问(正常情况下，mysql 占用的 3306 端口只是在 IP127.0.0.1 上监听，
+     拒绝了其他 IP 的访问（通过 netstat 可以查看到）。取消本地监  听需要修改 
      my.cnf 文件：    
        sudo vi /etc/mysql/my.cnf
        bind-address = 127.0.0.1 //找到此内容并且注释
-   * 5.mysql目录结构
+   * 5.mysql 目录结构
      数据库存放目录：               /var/lib/mysql/
      相关配置文件存放目录：          /usr/share/mysql
-     相关命令存放目录：             /usr/bin(mysqladmin mysqldump等命令)
+     相关命令存放目录：             /usr/bin(mysqladmin mysqldump 等命令)
      启动脚步存放目录：            /etc/rc.d/init.d/
    * 6.mysql 大小写敏感问题
      sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf 
-     在[mysqld]节下 添加 lower_case_table_names=1 参数，并设置相应的值 (备注：为0时大小写敏感，为1时大小写不敏感，默认为0
+     在[mysqld]节下 添加 lower_case_table_names=1 参数，并设置相应的值 (备注：为 0 时大小写敏感，为 1 时大小写不敏感，默认为 0
    * 7 常见问题
       *  删除不掉数据库
          mysql> drop database elvdou;
@@ -477,13 +477,13 @@ CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib; export CLASSPATH
 
 ** install vmware workstation
    key:1F04Z-6D111-7Z029-AV0Q4-3AEH8
-   卸载vmware 
+   卸载 vmware 
    vmware-installer -l
    sudo vmware-installer --uninstall-product vmware-workstation
-   安装vmware
+   安装 vmware
     chmod a+x 
     ./
-    安装VBox
+    安装 VBox
 ** shadowsock vpn
    * step1 install
      sudo apt-get install python-pip 
@@ -494,38 +494,38 @@ CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib; export CLASSPATH
      alias
      sslocal -s 地址 -p 服务端口 -b 127.0.0.1 -l 1080 -k 密码 -t 600 -m aes-256-cfb
      
-** chm阅读
+** chm 阅读
      sudo apt-get  update
      sudo apt-get install kchmviewer
 
 ** smplayer 视频软件
    sudo apt-get install  smplayer
-   ubuntu内置的video软件很好用
+   ubuntu 内置的 video 软件很好用
 ** xbmc 安装
    太强大大媒体中心
    sudo add-apt-repository ppa:team-xbmc 
    sudo apt-get update
    sudo apt-get install xbmc
-** ubuntu15.04 wifi热点共享
+** ubuntu15.04 wifi 热点共享
   + 1.下载
-    在ubuntu软件中心搜索kde nm connection
+    在 ubuntu 软件中心搜索 kde nm connection
   + 2.配置
     kde5-nm-connection-editor
     跳出连接编辑器的图形界面 在图形界面点击
     添加-->Wireless(shared)
-    弹出New Connection (New 802-11-wireless connection)图形界面
-    Connection name:更改为mywifi(默认为New 802-11-wireless connection)
-    SSID:更改为mywifi(默认为my_shared_connection)
-    模式:选择Access Point
+    弹出 New Connection (New 802-11-wireless connection)图形界面
+    Connection name:更改为 mywifi(默认为 New 802-11-wireless connection)
+    SSID:更改为 mywifi(默认为 my_shared_connection)
+    模式:选择 Access Point
     Restrict to device:选择你的无线网卡
     点击无线安全选项卡
-    安全:选择WPA & WPA2 Personal
-    密码:填入你要设置的密码(至少8位)
+    安全:选择 WPA & WPA2 Personal
+    密码:填入你要设置的密码(至少 8 位)
   + 3.连接
-    我们点击最上方网络管理的图标，选择 连接到隐藏的Wi-Fi网络
-    Wifi适配器:选择我们设置了的无线网络
+    我们点击最上方网络管理的图标，选择 连接到隐藏的 Wi-Fi 网络
+    Wifi 适配器:选择我们设置了的无线网络
     连接:选择我们刚刚建立的连接名称(mywifi)
-    之后网络名称(SSID)，Wi-Fi安全性,密码会自动填写并变成灰色
+    之后网络名称(SSID)，Wi-Fi 安全性,密码会自动填写并变成灰色
     点击确定
 ** ubuntu 系统备份还原
   * step1: su root 
@@ -539,7 +539,7 @@ CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib; export CLASSPATH
     + 解释下这个命令：
       'tar' 是用来备份的程序
       c - 新建一个备份文档
-      v - 详细模式， tar程序将在屏幕上实时输出所有信息。
+      v - 详细模式，tar 程序将在屏幕上实时输出所有信息。
       p - 保存许可，并应用到所有文件。
       z - 采用‘gzip’压缩备份文件，以减小备份文件体积。
       f <filename> - 说明备份文件存放的路径， /ubuntu.tgz 是本例子中备份文件名。
@@ -547,17 +547,17 @@ CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib; export CLASSPATH
     
        tar -xvpzf  /media/win/ubuntu.tgz -C /
       + 参数
-       x是告诉tar程序解压缩备份文件。
-       -C <directory> 参数是指定tar程序解压缩到的目录。 ( 在本例中是/ )
+       x 是告诉 tar 程序解压缩备份文件。
+       -C <directory> 参数是指定 tar 程序解压缩到的目录。 ( 在本例中是/ )
      重新创建你剔除的目录：
      ( /proc, /lost+found, /mnt, /sys  /media)
-** ubuntu 安装vsftp
-   也可以使用filezilla客户端
+** ubuntu 安装 vsftp
+   也可以使用 filezilla 客户端
    sudo apt-get install filezilla
 
 
    sudo apt-get install vsftpd
-   然后修改/etc/vsftpd.conf文件
+   然后修改/etc/vsftpd.conf 文件
    
    修改如下几行：
 
@@ -584,10 +584,10 @@ CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib; export CLASSPATH
 
    其他的就不用管了，保存文件。
    
-   重启vsftpd服务器
+   重启 vsftpd 服务器
    sudo service vsftpd restart
    
-   我们在/srv/ftp 文件夹新建两个文件夹，一个是upload，一个是download
+   我们在/srv/ftp 文件夹新建两个文件夹，一个是 upload，一个是 download
 
    执行下面的两条指令
    sudo chmod -R 777 /srv/ftp/upload
@@ -597,50 +597,50 @@ CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib; export CLASSPATH
    sudo chmod -R 755 /srv/ftp/download
 
    sudo chmod -R 755 /srv/ftp/download
-** ubuntu 安装samba
+** ubuntu 安装 samba
    * step 1: samba 安装 
       sudo apt-get install samba
    * step 2: 创建共享目录
       mkdir ~/samba-share
       sudo chmod 777 ~/samba-share/
-   * step 3: 创建samba配置文件
+   * step 3: 创建 samba 配置文件
      1. 保存现有的配置文件
         sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak
      2. 修改现配置文件
         sudo gedit /etc/samba/smb.conf   
-        在smb.conf最后添加
+        在 smb.conf 最后添加
        [share]
          path = /home/manue1/share
          available = yes
          browsealbe = yes
          public = yes
          writable = yes
-   * step 4: 创建samba用户
+   * step 4: 创建 samba 用户
      sudo touch /etc/samba/smbpasswd
      sudo smbpasswd -a manue1
-   * step 5: 重启samba服务器
+   * step 5: 重启 samba 服务器
      sudo /etc/init.d/samba restart
-** ubuntu 安装shutter截图工具
+** ubuntu 安装 shutter 截图工具
    sudo apt-get install shutter
 ** ubuntu 安装百度云
    https://github.com/LiuLang/bcloud-packages
    下载
    
-** ubuntu 安装BT
+** ubuntu 安装 BT
    * Deluge
     sudo add-apt-repository ppa:deluge-team/ppa 
     sudo apt-get update
     sudo apt-get install deluge
    * Vuze
      sudo apt-get install vuze
-** ssh翻墙图形化利器
+** ssh 翻墙图形化利器
    sudo apt-get install gstm
 ** ubuntu shutter 截图工具
    sudo apt-get install shutter
 ** ubuntu 删除不必要的插件
-   *  删除libreoffice
+   *  删除 libreoffice
       sudo apt-get remove libreoffice-common
-   *  删除Amazon的链接
+   *  删除 Amazon 的链接
       sudo apt-get remove unity-webapps-common
    *  删除不用的自带软件
       sudo apt-get remove thunderbird totem rhythmbox empathy brasero simple-scan gnome-mahjongg aisleriot gnome-mines cheese transmission-common gnome-orca webbrowser-app gnome-sudoku  landscape-client-ui-install
@@ -650,7 +650,7 @@ CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib; export CLASSPATH
    sudo add-apt-repository ppa:diesch/testing  
    sudo apt-get update  
    sudo apt-get install classicmenu-indicator
-** ubuntu 安装xmind思维导图软件
+** ubuntu 安装 xmind 思维导图软件
    
 ** ubuntu 安装局域网流量监控软件
    * 自带 tcpdump
